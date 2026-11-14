@@ -1,0 +1,308 @@
+/* ─── Cumulus Glass ───
+   Active only with the "Cumulus Glass" color theme.
+   The window is the sky. Sidebar, editor, panel and the Claude Code view are VS Code's own floating
+   cards (workbench.experimental.modernUI), restyled as liquid glass: frosted sky, deep-blue tint,
+   a specular rim, and continuous squircle corners (corner-shape: squircle, Chromium 139+).
+   Cloud art is only drawn where no text sits: the empty editor, the activity bar lane, and the
+   title bar either side of the command center.
+   Tune the look with the variables in the first block. */
+
+.monaco-workbench.monaco-workbench[class*="cumulus-glass"] {
+  --cg-sky: url("__SOFT__");
+  --cg-frost: url("__FROST__");
+  --cg-art-empty: url("__ART_EMPTY__");
+  --cg-art-lane: url("__ART_LANE__");
+  --cg-art-title-l: url("__ART_TITLE_L__");
+  --cg-art-title-r: url("__ART_TITLE_R__");
+
+  /* Lower alpha = more sky but less contrast. Editor >= 0.66 and cards >= 0.66 keep text readable over the clouds. */
+  --cg-tint-editor: rgba(4, 30, 94, 0.72);
+  --cg-tint-card: rgba(2, 28, 100, 0.72);
+  --cg-tint-popup: rgba(12, 48, 112, 0.52);
+
+  --cg-radius-card: 36px;
+  --cg-radius-popup: 32px;
+  --cg-radius-menu: 24px;
+  --cg-radius-control: 16px;
+  --cg-radius-row: 12px;
+
+  --cg-edge: rgba(210, 232, 255, 0.16);
+  --cg-rim:
+    inset 0 1px 0 rgba(255, 255, 255, 0.30),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.07);
+  --cg-rim-strong:
+    inset 0 1px 0 rgba(255, 255, 255, 0.42),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.10),
+    inset 0 14px 28px -18px rgba(255, 255, 255, 0.22);
+  --cg-sheen: linear-gradient(160deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0) 42%);
+  --cg-chip: rgba(210, 232, 255, 0.13);
+  --cg-chip-hover: rgba(210, 232, 255, 0.07);
+
+  --vscode-cornerRadius-large: var(--cg-radius-card) !important;
+  --modern-ui-floating-card-border-color: var(--cg-edge);
+  --vscode-surface-border: var(--cg-edge);
+
+  /* Inside the workbench everything sits on our own glass layers */
+  --vscode-editor-background: transparent !important;
+  --vscode-editorGutter-background: transparent !important;
+  --vscode-editorPane-background: transparent !important;
+  --vscode-minimap-background: transparent !important;
+  --vscode-sideBar-background: transparent !important;
+  --vscode-panel-background: transparent !important;
+  --vscode-terminal-background: transparent !important;
+
+  background:
+    linear-gradient(180deg, rgba(3, 16, 50, 0.38) 0, rgba(3, 16, 50, 0.08) 70px, rgba(3, 16, 50, 0.08) calc(100% - 70px), rgba(3, 16, 50, 0.62) 100%),
+    var(--cg-sky) center / cover no-repeat fixed !important;
+
+  & > .monaco-grid-view {
+    background: transparent !important;
+  }
+
+  /* ── Floating glass cards ── */
+  & .part.sidebar,
+  & .part.auxiliarybar,
+  & .part.panel,
+  & .part.activitybar {
+    background:
+      linear-gradient(var(--cg-tint-card), var(--cg-tint-card)),
+      var(--cg-frost) center / cover no-repeat fixed !important;
+    box-shadow: var(--cg-rim) !important;
+    corner-shape: squircle;
+  }
+
+  & .part.editor {
+    background: transparent !important;
+    corner-shape: squircle;
+  }
+  & .part.editor > .content .editor-group-container,
+  & .part.editor > .content .editor-group-container::after {
+    corner-shape: squircle;
+  }
+  & .part.editor > .content {
+    background:
+      linear-gradient(var(--cg-tint-editor), var(--cg-tint-editor)),
+      var(--cg-sky) center / cover no-repeat fixed !important;
+    box-shadow: var(--cg-rim), inset 0 0 0 1px var(--cg-edge) !important;
+    corner-shape: squircle;
+  }
+  & .part.editor .editor-group-container,
+  & .part.editor .editor-group-container > .editor-container,
+  & .part.editor .editor-group-container > .title,
+  & .part.editor .editor-group-container > .title .tabs-and-actions-container,
+  & .part.editor .editor-group-container > .title .tabs-container {
+    background-color: transparent !important;
+  }
+
+  /* Claude Code and other webviews float over the cards with the same corners */
+  & .webview-overlay-content {
+    corner-shape: squircle;
+  }
+
+  /* Window chrome sits directly on the sky */
+  & .part.titlebar,
+  & .part.statusbar {
+    background: transparent !important;
+  }
+  & .part.statusbar {
+    text-shadow: 0 1px 2px rgba(3, 16, 50, 0.7);
+  }
+  & .part.titlebar {
+    background:
+      var(--cg-art-title-l) left calc(50% - 640px) center / auto 100% no-repeat,
+      var(--cg-art-title-r) left calc(50% + 380px) center / auto 100% no-repeat !important;
+  }
+  & .part.titlebar .command-center .agent-status-pill,
+  & .part.titlebar .command-center .action-item.command-center-center {
+    background: rgba(210, 232, 255, 0.10) !important;
+    border: 1px solid var(--cg-edge) !important;
+    box-shadow: var(--cg-rim) !important;
+    border-radius: var(--cg-radius-control) !important;
+    corner-shape: squircle;
+    -webkit-backdrop-filter: blur(16px) saturate(170%);
+    backdrop-filter: blur(16px) saturate(170%);
+  }
+
+  /* ── Cloud art (behind no text) ── */
+  & .part.editor .editor-group-container.empty {
+    background: var(--cg-art-empty) center bottom / min(100%, 1400px) auto no-repeat !important;
+  }
+  & .part.activitybar > .content {
+    background: var(--cg-art-lane) center 62% / 48px auto no-repeat;
+  }
+
+  /* ── Tabs: the active tab is a glass chip ── */
+  & .tabs-container > .tab {
+    position: relative;
+    isolation: isolate;
+    background-color: transparent !important;
+    padding-left: 14px !important;
+  }
+  & .tabs-container > .tab.sizing-fit .tab-actions,
+  & .tabs-container > .tab .tab-actions {
+    margin-right: 6px;
+  }
+  & .tabs-container > .tab::before {
+    content: "";
+    position: absolute;
+    inset: 4px 3px;
+    z-index: -1;
+    border-radius: var(--cg-radius-control);
+    corner-shape: squircle;
+    pointer-events: none;
+    transition: background-color 160ms ease;
+  }
+  & .tabs-container > .tab:hover::before {
+    background: var(--cg-chip-hover);
+  }
+  & .tabs-container > .tab.active::before {
+    background: rgba(210, 232, 255, 0.12);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  }
+  & .tabs-container > .tab .tab-label,
+  & .tabs-container > .tab .label-name,
+  & .monaco-icon-label.italic > .monaco-icon-label-container > .monaco-icon-name-container > .label-name,
+  & .monaco-icon-label.italic::after,
+  & .monaco-icon-label.italic .label-description {
+    font-style: normal !important;
+  }
+  & .tabs-container > .tab .tab-border-top-container,
+  & .tabs-container > .tab .tab-border-bottom-container {
+    display: none !important;
+  }
+
+  /* ── Activity bar: the active icon sits in a glass chip ── */
+  & .part.activitybar .action-item {
+    isolation: isolate;
+  }
+  & .part.activitybar .action-item .active-item-indicator::before {
+    border: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    inset: 3px 6px !important;
+    z-index: -1;
+    border-radius: var(--cg-radius-control);
+    corner-shape: squircle;
+  }
+  & .part.activitybar .action-item.checked .active-item-indicator::before {
+    background: rgba(210, 232, 255, 0.12) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  }
+
+  /* ── Lists, rows, controls ── */
+  & .monaco-list-row {
+    border-radius: var(--cg-radius-row);
+    corner-shape: squircle;
+  }
+  & .monaco-button,
+  & .monaco-text-button,
+  & .monaco-inputbox,
+  & .monaco-select-box,
+  & .monaco-dropdown-button,
+  & .monaco-custom-toggle,
+  & .action-item .action-label {
+    border-radius: var(--cg-radius-control) !important;
+    corner-shape: squircle;
+  }
+  & .monaco-button,
+  & .monaco-text-button {
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.20), rgba(255, 255, 255, 0) 60%);
+    box-shadow: var(--cg-rim) !important;
+  }
+  & .monaco-inputbox {
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+  & .monaco-scrollable-element > .scrollbar > .slider {
+    border-radius: 999px;
+  }
+  & .monaco-scrollable-element > .scrollbar.vertical > .slider {
+    width: 6px !important;
+    left: 2px !important;
+  }
+  & .monaco-scrollable-element > .scrollbar.horizontal > .slider {
+    height: 6px !important;
+    top: 2px !important;
+  }
+
+  /* Terminal shows the card through (needs terminal.integrated.enableImages) */
+  & .xterm .xterm-viewport,
+  & .xterm .xterm-screen,
+  & .terminal-wrapper,
+  & .integrated-terminal {
+    background-color: transparent !important;
+  }
+
+  /* ── Floating liquid glass: real backdrop blur on leaf overlays only ── */
+  & .quick-input-widget,
+  & .monaco-editor .suggest-widget,
+  & .monaco-editor .suggest-details,
+  & .monaco-editor .monaco-hover,
+  & .monaco-editor .find-widget,
+  & .monaco-editor .parameter-hints-widget,
+  & .notification-toast,
+  & .notifications-center,
+  & .monaco-menu-container,
+  & .context-view .monaco-menu,
+  & .monaco-select-box-dropdown-container {
+    background-color: var(--cg-tint-popup) !important;
+    background-image: var(--cg-sheen) !important;
+    -webkit-backdrop-filter: blur(26px) saturate(190%) !important;
+    backdrop-filter: blur(26px) saturate(190%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.16) !important;
+    box-shadow: var(--cg-rim-strong) !important;
+    corner-shape: squircle;
+  }
+  & .quick-input-widget,
+  & .notification-toast,
+  & .notifications-center {
+    border-radius: var(--cg-radius-popup) !important;
+    overflow: hidden;
+  }
+  & .monaco-editor .suggest-widget,
+  & .monaco-editor .suggest-details,
+  & .monaco-editor .monaco-hover,
+  & .monaco-editor .find-widget,
+  & .monaco-editor .parameter-hints-widget,
+  & .monaco-menu-container,
+  & .context-view .monaco-menu,
+  & .monaco-select-box-dropdown-container {
+    border-radius: var(--cg-radius-menu) !important;
+    overflow: hidden;
+  }
+  & .quick-input-widget .quick-input-header,
+  & .quick-input-widget .quick-input-list .monaco-list,
+  & .quick-input-widget .quick-input-title,
+  & .notification-toast .monaco-list,
+  & .notifications-center .monaco-list,
+  & .monaco-editor .suggest-widget .tree,
+  & .monaco-editor .suggest-widget .monaco-list {
+    background: transparent !important;
+  }
+}
+
+/* Respect "Reduce transparency": solid Cumulus, same shapes */
+@media (prefers-reduced-transparency: reduce) {
+  .monaco-workbench.monaco-workbench[class*="cumulus-glass"] {
+    background: #041640 !important;
+    & .part.sidebar,
+    & .part.auxiliarybar,
+    & .part.panel,
+    & .part.activitybar {
+      background: #06245c !important;
+    }
+    & .part.editor > .content {
+      background: #0a2d6b !important;
+    }
+    & .part.titlebar {
+      background: transparent !important;
+    }
+    & .part.editor .editor-group-container.empty,
+    & .part.activitybar > .content {
+      background-image: none !important;
+    }
+    & * {
+      -webkit-backdrop-filter: none !important;
+      backdrop-filter: none !important;
+    }
+  }
+}

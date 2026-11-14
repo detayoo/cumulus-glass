@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 36" width="260" height="36"><defs>
+<radialGradient id="puff" cx="0.45" cy="0.36" r="0.62" fx="0.42" fy="0.22">
+  <stop offset="0" stop-color="#fffbe2"/>
+  <stop offset="0.38" stop-color="#f8f4dc"/>
+  <stop offset="0.7" stop-color="#e3ebe4"/>
+  <stop offset="0.9" stop-color="#c3d7e6"/>
+  <stop offset="1" stop-color="#a9c6e3" stop-opacity="0.9"/>
+</radialGradient>
+<radialGradient id="puffLow" cx="0.45" cy="0.36" r="0.62" fx="0.42" fy="0.22">
+  <stop offset="0" stop-color="#f1f3e6"/>
+  <stop offset="0.45" stop-color="#dfe8ea"/>
+  <stop offset="0.8" stop-color="#bcd2e6"/>
+  <stop offset="1" stop-color="#94b7dc" stop-opacity="0.9"/>
+</radialGradient>
+<radialGradient id="glass" cx="0.5" cy="0.5" r="0.5">
+  <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+  <stop offset="0.68" stop-color="#d8ecff" stop-opacity="0.04"/>
+  <stop offset="0.9" stop-color="#cfe6ff" stop-opacity="0.20"/>
+  <stop offset="1" stop-color="#ffffff" stop-opacity="0.50"/>
+</radialGradient>
+<linearGradient id="spec" x1="0" y1="0" x2="1" y2="1">
+  <stop offset="0" stop-color="#ffffff" stop-opacity="0.95"/>
+  <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#ffffff" stop-opacity="1"/>
+  <stop offset="1" stop-color="#ffffff" stop-opacity="1"/>
+</linearGradient>
+</defs><g opacity="0.6"><circle cx="15.2" cy="11.6" r="3.2" fill="url(#puff)"/><circle cx="6.9" cy="12.3" r="4.9" fill="url(#puff)"/><circle cx="13.5" cy="13.2" r="4.9" fill="url(#puff)"/><circle cx="11.5" cy="13.9" r="6.1" fill="url(#puff)"/><circle cx="30.4" cy="10.1" r="4.5" fill="url(#puff)"/><circle cx="27.0" cy="10.6" r="2.5" fill="url(#puff)"/><circle cx="28.2" cy="11.1" r="3.4" fill="url(#puff)"/><circle cx="55.0" cy="11.6" r="3.6" fill="url(#puff)"/><circle cx="57.2" cy="12.5" r="2.0" fill="url(#puff)"/><circle cx="70.3" cy="12.7" r="2.1" fill="url(#puff)"/><circle cx="71.5" cy="14.3" r="3.7" fill="url(#puff)"/><circle cx="75.3" cy="15.1" r="2.2" fill="url(#puff)"/><circle cx="69.0" cy="15.2" r="2.8" fill="url(#puff)"/><circle cx="122.6" cy="15.7" r="2.2" fill="url(#puff)"/><circle cx="118.9" cy="15.9" r="2.7" fill="url(#puff)"/><circle cx="121.2" cy="17.1" r="3.3" fill="url(#puff)"/><circle cx="143.3" cy="17.2" r="2.5" fill="url(#puff)"/><circle cx="145.4" cy="18.3" r="1.5" fill="url(#puff)"/><circle cx="146.3" cy="18.5" r="3.1" fill="url(#puff)"/><circle cx="158.8" cy="22.7" r="2.6" fill="url(#puff)"/><circle cx="159.1" cy="23.0" r="3.4" fill="url(#puff)"/><circle cx="159.2" cy="23.6" r="2.0" fill="url(#puff)"/><circle cx="182.1" cy="20.4" r="2.0" fill="url(#puff)"/><circle cx="183.0" cy="20.5" r="2.4" fill="url(#puff)"/><circle cx="205.5" cy="26.2" r="1.4" fill="url(#puff)"/><circle cx="204.4" cy="26.8" r="2.1" fill="url(#puff)"/><circle cx="203.5" cy="27.1" r="1.5" fill="url(#puff)"/><circle cx="229.8" cy="21.3" r="1.4" fill="url(#puff)"/><circle cx="230.8" cy="21.4" r="1.8" fill="url(#puff)"/><circle cx="250.2" cy="25.0" r="0.6" fill="url(#puff)"/><circle cx="249.5" cy="25.4" r="1.1" fill="url(#puff)"/><g><circle cx="60.0" cy="20.0" r="4.0" fill="url(#glass)" stroke="#ffffff" stroke-opacity="0.38" stroke-width="1"/><ellipse cx="58.4" cy="18.4" rx="1.4" ry="0.6" fill="url(#spec)" transform="rotate(-40 58.4 18.4)"/><circle cx="62.0" cy="22.1" r="1.2" fill="#ffffff" fill-opacity="0.55"/></g></g></svg>
