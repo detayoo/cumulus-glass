@@ -32,10 +32,11 @@ To use only the color theme, run the last command and choose **Cumulus** in **Pr
 
 ## Docs
 
-- [AGENTS.md](AGENTS.md): step-by-step instructions for a coding agent to install, customize, remove or develop the theme
+- [AGENTS.md](AGENTS.md): hand this to your coding agent and it will install Cumulus Glass for you, start to finish
 - [Setup](docs/setup.md): installing the glass layer, and what to do after a VS Code update
 - [Customizing](docs/customizing.md): tint strength, corner radius, your own sky image, the cloud art
 - [How it works](docs/how-it-works.md): how the glass is faked, where the corners come from, and what each file does
+- [Development](docs/development.md): design and technical rules for changing the theme itself
 - [Claude Code panel](docs/claude-code.md): optional glass styling for the Claude Code extension's chat panel
 
 ## Repo layout
