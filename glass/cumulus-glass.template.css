@@ -1,6 +1,6 @@
 /* ─── Cumulus Glass ───
    Active only with the "Cumulus Glass" color theme.
-   The window is the sky. Sidebar, editor, panel and the Claude Code view are VS Code's own floating
+   The window is the sky. Sidebar, editor, panel and the chat view are VS Code's own floating
    cards (workbench.experimental.modernUI), restyled as liquid glass: frosted sky, deep-blue tint,
    a specular rim, and continuous squircle corners (corner-shape: squircle, Chromium 139+).
    Cloud art is only drawn where no text sits: the empty editor, the activity bar lane, and the
@@ -94,7 +94,7 @@
     background-color: transparent !important;
   }
 
-  /* Claude Code and other webviews float over the cards with the same corners */
+  /* Chat panels and other webviews float over the cards with the same corners */
   & .webview-overlay-content {
     corner-shape: squircle;
   }

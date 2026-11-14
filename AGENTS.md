@@ -10,7 +10,7 @@ Cumulus Glass has three layers. Only the first is a normal VS Code theme.
 |---|---|---|
 | Color themes **Cumulus** and **Cumulus Glass** | `theme/` → `dist/cumulus-theme-<version>.vsix` | Installed as a VS Code extension |
 | Glass layer: sky, frosted cards, squircle corners, blur, cloud art | `glass/` → `dist/cumulus-glass.css` | Injected by the third-party **Custom CSS and JS Loader** extension |
-| Optional chat panel patch for the Claude Code extension | `claude-code/` | A shell script that edits that extension's `webview/index.css` |
+| Optional chat panel patch for the Claude Code extension | `extras/chat-panel/` | A shell script that edits that extension's `webview/index.css` |
 
 **Cumulus Glass** (the theme) without the glass layer has transparent backgrounds and looks broken. If the user only wants colors, install the `.vsix`, set **Cumulus**, and stop.
 
@@ -20,7 +20,7 @@ Cumulus Glass has three layers. Only the first is a normal VS Code theme.
 - **Never apply the chat panel patch unless the user explicitly asks for it.** It modifies another extension's files.
 - **Some steps only the user can do.** You can't run Command Palette commands or restart VS Code. Tell the user exactly what to run and wait for them to confirm.
 - **Don't edit files inside the VS Code app or other extensions** (apart from the opted-in patch). The loader handles VS Code's files.
-- **Don't run `build.py --install` without saying so first.** It overwrites `~/.vscode/cumulus-glass.css` and `~/.vscode/cumulus/claude-code-glass.css` and `patch-claude-code.sh`. That's fine on a fresh install, but it replaces any hand edits the user made to those copies.
+- **Don't run `build.py --install` without saying so first.** It overwrites `~/.vscode/cumulus-glass.css` and `~/.vscode/cumulus/chat-panel-glass.css` and `patch-chat-panel.sh`. That's fine on a fresh install, but it replaces any hand edits the user made to those copies.
 
 ## 1. Check prerequisites
 
@@ -112,16 +112,16 @@ Ask them to confirm they see:
 
 ## Optional: chat panel patch (only if asked)
 
-See `docs/claude-code.md` for what it changes. To apply it:
+See `docs/chat-panel.md` for what it changes. To apply it:
 
 ```sh
-~/.vscode/cumulus/patch-claude-code.sh
+~/.vscode/cumulus/patch-chat-panel.sh
 ```
 
 - It prints `patched: <path>` for each installed version of the extension, and backs each file up once as `index.css.cumulus-backup`.
-- A `warning:` line means a class name changed in that extension version. Report it. The selectors in `claude-code/claude-code-glass.css` need updating.
+- A `warning:` line means a class name changed in that extension version. Report it. The selectors in `extras/chat-panel/chat-panel-glass.css` need updating.
 - The user must then run **Developer: Reload Window**. Tell them this restarts any running chat session.
-- After this, the Cumulus extension re-applies the patch automatically when the chat extension updates, but only while the theme is Cumulus Glass. Manual re-run: **Cumulus: Re-apply Claude Code glass**.
+- After this, the Cumulus extension re-applies the patch automatically when the chat extension updates, but only while the theme is Cumulus Glass. Manual re-run: **Cumulus: Re-apply chat panel glass**.
 
 ## Customizing
 
@@ -150,4 +150,4 @@ What to edit:
    Uninstall `be5invis.vscode-custom-css` too if nothing else uses it.
 3. Remove the Cumulus entry from `vscode_custom_css.imports` and set another `workbench.colorTheme`.
 4. Delete `~/.vscode/cumulus-glass.css` and `~/.vscode/cumulus/`.
-5. If the panel patch was applied, restore the backups as shown in `docs/claude-code.md`.
+5. If the panel patch was applied, restore the backups as shown in `docs/chat-panel.md`.

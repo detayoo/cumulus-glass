@@ -1,4 +1,4 @@
-/* cumulus-glass:start — Claude Code input as liquid glass, only while the Cumulus Glass theme is active */
+/* cumulus-glass:start — chat panel input as liquid glass, only while the Cumulus Glass theme is active */
 :is(body[data-vscode-theme-id*="cumulus-glass"], body[data-vscode-theme-id*="Cumulus Glass"], body[data-vscode-theme-name="Cumulus Glass"]) {
   --app-claude-orange: #5cb6f2;
   --app-claude-clay-button-orange: #2f8fe0;

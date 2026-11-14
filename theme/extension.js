@@ -4,7 +4,7 @@ const os = require("os");
 const path = require("path");
 const { execFile } = require("child_process");
 
-const SCRIPT = path.join(os.homedir(), ".vscode", "cumulus", "patch-claude-code.sh");
+const SCRIPT = path.join(os.homedir(), ".vscode", "cumulus", "patch-chat-panel.sh");
 const MARKER = "cumulus-glass:start";
 
 function claudeCodeCss() {
@@ -71,17 +71,17 @@ async function apply({ manual }) {
     }
     await offerReload(
       manual
-        ? "Cumulus: Claude Code glass re-applied. Reload to see it."
-        : "Cumulus: Claude Code's panel needed its glass styling, so it was applied. Reload to see it."
+        ? "Cumulus: chat panel glass re-applied. Reload to see it."
+        : "Cumulus: the chat panel needed its glass styling, so it was applied. Reload to see it."
     );
   } catch (err) {
-    vscode.window.showErrorMessage(`Cumulus: couldn't patch Claude Code. ${err.message}`);
+    vscode.window.showErrorMessage(`Cumulus: couldn't patch the chat panel. ${err.message}`);
   }
 }
 
 function activate(context) {
   context.subscriptions.push(
-    vscode.commands.registerCommand("cumulus.patchClaudeCode", () => apply({ manual: true }))
+    vscode.commands.registerCommand("cumulus.patchChatPanel", () => apply({ manual: true }))
   );
   context.subscriptions.push(
     vscode.extensions.onDidChange(() => apply({ manual: false }))

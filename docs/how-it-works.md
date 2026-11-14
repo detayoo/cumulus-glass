@@ -31,7 +31,7 @@ The corners use the CSS `corner-shape: squircle` property, Apple's continuous cu
 
 ## The companion extension
 
-The `.vsix` contains the two themes and a small extension (`theme/extension.js`). It only matters if you use the [Claude Code patch](claude-code.md). It adds the **Cumulus: Re-apply Claude Code glass** command and re-applies the patch after Claude Code updates.
+The `.vsix` contains the two themes and a small extension (`theme/extension.js`). It only matters if you use the [chat panel patch](chat-panel.md). It adds the **Cumulus: Re-apply chat panel glass** command and re-applies the patch after Claude Code updates.
 
 It does nothing if:
 

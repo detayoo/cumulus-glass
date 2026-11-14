@@ -1,7 +1,7 @@
 """Build Cumulus Glass into dist/.
 
     python3 build.py            build dist/cumulus-glass.css and dist/cumulus-theme-<version>.vsix
-    python3 build.py --install  also copy the CSS and the Claude Code patch files into ~/.vscode
+    python3 build.py --install  also copy the CSS and the chat panel patch files into ~/.vscode
 
 Needs Python 3.9+ and Pillow (pip install pillow).
 """
@@ -60,10 +60,10 @@ def install():
     target = os.path.join(VSCODE, "cumulus")
     os.makedirs(target, exist_ok=True)
     shutil.copy(os.path.join(DIST, "cumulus-glass.css"), os.path.join(VSCODE, "cumulus-glass.css"))
-    for name in ("claude-code-glass.css", "patch-claude-code.sh"):
-        shutil.copy(os.path.join(ROOT, "claude-code", name), os.path.join(target, name))
-    os.chmod(os.path.join(target, "patch-claude-code.sh"), 0o755)
-    print(f"Copied cumulus-glass.css to {VSCODE} and the Claude Code patch files to {target}")
+    for name in ("chat-panel-glass.css", "patch-chat-panel.sh"):
+        shutil.copy(os.path.join(ROOT, "extras", "chat-panel", name), os.path.join(target, name))
+    os.chmod(os.path.join(target, "patch-chat-panel.sh"), 0o755)
+    print(f"Copied cumulus-glass.css to {VSCODE} and the chat panel patch files to {target}")
 
 
 def main():

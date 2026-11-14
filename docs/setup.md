@@ -6,13 +6,13 @@ This turns on the full Cumulus Glass look. If you only want the color theme, ins
 
 ```sh
 python3 build.py --install
-code --install-extension dist/cumulus-theme-1.5.1.vsix
+code --install-extension dist/cumulus-theme-1.5.2.vsix
 ```
 
 `--install` copies:
 
 - `dist/cumulus-glass.css` to `~/.vscode/cumulus-glass.css`
-- the Claude Code patch files to `~/.vscode/cumulus/`. They're unused unless you [opt in](claude-code.md).
+- the chat panel patch files to `~/.vscode/cumulus/`. They're unused unless you [opt in](chat-panel.md).
 
 If `code` isn't on your PATH, run **Shell Command: Install 'code' command in PATH** from the Command Palette. You can also drag the `.vsix` onto the Extensions view.
 

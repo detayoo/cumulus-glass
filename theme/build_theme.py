@@ -466,20 +466,20 @@ pkg = {
     "name": "cumulus-theme",
     "displayName": "Cumulus",
     "description": "An immersive deep-sky blue theme with sunlit cloud-cream text.",
-    "version": "1.5.1",
+    "version": "1.5.2",
     "publisher": "local",
     "engines": {"vscode": "^1.80.0"},
     "categories": ["Themes"],
     "main": "./extension.js",
     "activationEvents": ["onStartupFinished"],
-    "contributes": {"commands": [{"command": "cumulus.patchClaudeCode", "title": "Re-apply Claude Code glass", "category": "Cumulus"}], "themes": [{"label": "Cumulus", "uiTheme": "vs-dark", "path": "./themes/cumulus.json"}, {"label": "Cumulus Glass", "uiTheme": "vs-dark", "path": "./themes/cumulus-glass.json"}]},
+    "contributes": {"commands": [{"command": "cumulus.patchChatPanel", "title": "Re-apply chat panel glass", "category": "Cumulus"}], "themes": [{"label": "Cumulus", "uiTheme": "vs-dark", "path": "./themes/cumulus.json"}, {"label": "Cumulus Glass", "uiTheme": "vs-dark", "path": "./themes/cumulus-glass.json"}]},
 }
 json.dump(pkg, open(os.path.join(ext, "package.json"), "w"), indent=2)
 
 manifest = """<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011">
   <Metadata>
-    <Identity Language="en-US" Id="cumulus-theme" Version="1.5.1" Publisher="local" />
+    <Identity Language="en-US" Id="cumulus-theme" Version="1.5.2" Publisher="local" />
     <DisplayName>Cumulus</DisplayName>
     <Description xml:space="preserve">An immersive deep-sky blue theme with sunlit cloud-cream text.</Description>
     <Categories>Themes</Categories>
@@ -497,7 +497,7 @@ manifest = """<?xml version="1.0" encoding="utf-8"?>
 ctypes = """<?xml version="1.0" encoding="utf-8"?>
 <Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension=".json" ContentType="application/json" /><Default Extension=".vsixmanifest" ContentType="text/xml" /></Types>
 """
-vsix = os.path.join(out, "cumulus-theme-1.5.1.vsix")
+vsix = os.path.join(out, "cumulus-theme-1.5.2.vsix")
 with zipfile.ZipFile(vsix, "w", zipfile.ZIP_DEFLATED) as z:
     z.writestr("extension.vsixmanifest", manifest)
     z.writestr("[Content_Types].xml", ctypes)
