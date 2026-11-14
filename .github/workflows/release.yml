@@ -1,0 +1,46 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Check the tag matches the theme version
+        run: |
+          version=$(grep -o '"version": "[^"]*"' theme/build_theme.py | head -1 | cut -d'"' -f4)
+          if [ "v$version" != "$GITHUB_REF_NAME" ]; then
+            echo "Tag $GITHUB_REF_NAME doesn't match version $version in theme/build_theme.py"
+            exit 1
+          fi
+
+      - name: Build
+        run: |
+          pip install pillow
+          python build.py
+
+      - name: Collect release files
+        run: |
+          mkdir release
+          cp dist/cumulus-theme-*.vsix release/cumulus-theme.vsix
+          cp dist/cumulus-glass.css release/
+          cp extras/chat-panel/chat-panel-glass.css extras/chat-panel/patch-chat-panel.sh release/
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" release/* \
+            --title "Cumulus Glass $GITHUB_REF_NAME" \
+            --notes "Install with: curl -fsSL https://raw.githubusercontent.com/detayoo/cumulus-glass/main/install.sh | sh"

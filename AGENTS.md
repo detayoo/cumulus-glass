@@ -20,7 +20,25 @@ Cumulus Glass has three layers. Only the first is a normal VS Code theme.
 - **Never apply the chat panel patch unless the user explicitly asks for it.** It modifies another extension's files.
 - **Some steps only the user can do.** You can't run Command Palette commands or restart VS Code. Tell the user exactly what to run and wait for them to confirm.
 - **Don't edit files inside the VS Code app or other extensions** (apart from the opted-in patch). The loader handles VS Code's files.
-- **Don't run `build.py --install` without saying so first.** It overwrites `~/.vscode/cumulus-glass.css` and `~/.vscode/cumulus/chat-panel-glass.css` and `patch-chat-panel.sh`. That's fine on a fresh install, but it replaces any hand edits the user made to those copies.
+- **Don't run `build.py --install` or `install.sh` without saying so first.** It overwrites `~/.vscode/cumulus-glass.css` and `~/.vscode/cumulus/chat-panel-glass.css` and `patch-chat-panel.sh`. That's fine on a fresh install, but it replaces any hand edits the user made to those copies.
+
+## Fast path: the installer (macOS and Linux)
+
+Ask the user for permission to change their VS Code settings, then run:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/detayoo/cumulus-glass/main/install.sh | sh -s -- --yes
+```
+
+- It downloads the latest release and installs the theme and the loader.
+- It merges the four settings below into `settings.json`, keeps comments, and saves a backup next to it. It restores the file and prints manual steps if anything looks wrong.
+- If the user said no to settings changes, use `--no-settings` instead of `--yes` and show them what to add.
+- Add `--with-chat-panel` only if the user asked for the chat panel patch.
+- If `code` isn't on PATH, set `CUMULUS_CODE` to the full path of the VS Code CLI.
+
+Then skip to [step 5](#5-hand-off-to-the-user). On Windows, or if the installer fails, use the manual steps below.
+
+## Manual install
 
 ## 1. Check prerequisites
 
@@ -54,7 +72,7 @@ Expected output:
 ## 3. Install the theme and the loader
 
 ```sh
-code --install-extension dist/cumulus-theme-<version>.vsix --force
+code --install-extension dist/cumulus-theme-*.vsix --force
 code --install-extension be5invis.vscode-custom-css
 ```
 

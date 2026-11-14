@@ -1,13 +1,29 @@
 # Setup
 
-This turns on the full Cumulus Glass look. If you only want the color theme, install the `.vsix` and choose **Cumulus**. You can skip the rest.
+This turns on the full Cumulus Glass look. If you only want the color theme, install `cumulus-theme.vsix` from the [latest release](https://github.com/detayoo/cumulus-glass/releases/latest) and choose **Cumulus**. You can skip the rest.
+
+## Quick install (macOS and Linux)
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/detayoo/cumulus-glass/main/install.sh | sh
+```
+
+This does steps 1 to 3 below for you. It asks before touching your settings and keeps a backup. Then do [step 4](#4-enable-it-and-restart).
+
+## Manual install (Windows, or building from source)
 
 ## 1. Build and install the files
 
+You need Python 3.9 or newer and Pillow (`pip install pillow`).
+
 ```sh
+git clone https://github.com/detayoo/cumulus-glass.git
+cd cumulus-glass
 python3 build.py --install
-code --install-extension dist/cumulus-theme-1.5.2.vsix
+code --install-extension dist/cumulus-theme-*.vsix
 ```
+
+On Windows, use `code --install-extension` with the full file name from `dist\`.
 
 `--install` copies:
 

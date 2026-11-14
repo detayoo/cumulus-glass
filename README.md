@@ -17,18 +17,31 @@ VS Code themes can only set colors. Blur, images and corner shapes come from CSS
 
 ## Quick start
 
-You need VS Code, Python 3.9 or newer, and Pillow (`pip install pillow`).
+On macOS or Linux, run this in a terminal:
 
 ```sh
-git clone https://github.com/detayoo/cumulus-glass.git
-cd cumulus-glass
-python3 build.py --install
-code --install-extension dist/cumulus-theme-1.5.2.vsix
+curl -fsSL https://raw.githubusercontent.com/detayoo/cumulus-glass/main/install.sh | sh
 ```
 
-Then follow [the setup guide](docs/setup.md) to turn the glass on. It takes about two minutes.
+It downloads the latest release, installs the theme and the Custom CSS and JS Loader, and asks before updating your VS Code settings (it backs them up first). Then, in VS Code:
 
-To use only the color theme, run the last command and choose **Cumulus** in **Preferences: Color Theme**.
+1. Run **Enable Custom CSS and JS** from the Command Palette.
+2. Quit VS Code completely and reopen it.
+3. If VS Code says **"Your Code installation appears to be corrupt"**, choose **Don't Show Again**. It's caused by the CSS loader and is harmless.
+
+That's it. On Windows, or to build from source, follow [the setup guide](docs/setup.md).
+
+Prefer letting your coding agent do it? Point it at [AGENTS.md](AGENTS.md).
+
+**Only want the colors?** Download `cumulus-theme.vsix` from the [latest release](https://github.com/detayoo/cumulus-glass/releases/latest), install it with **Extensions: Install from VSIX...**, and choose **Cumulus** in **Preferences: Color Theme**.
+
+### Installer options
+
+Add these after `| sh -s --`:
+
+- `--yes`: update settings without asking
+- `--no-settings`: leave settings alone and print what to add
+- `--with-chat-panel`: also apply the optional [chat panel patch](docs/chat-panel.md)
 
 ## Docs
 
@@ -42,6 +55,7 @@ To use only the color theme, run the last command and choose **Cumulus** in **Pr
 ## Repo layout
 
 ```
+install.sh                  one-line installer (downloads the latest release)
 build.py                    builds everything into dist/ (add --install to copy the CSS into ~/.vscode)
 theme/
   build_theme.py            generates the Cumulus and Cumulus Glass color themes and the .vsix

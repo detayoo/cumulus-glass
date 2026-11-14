@@ -18,8 +18,23 @@ Rules for changing the theme itself. For installing it, see [AGENTS.md](../AGENT
 - **Never put `backdrop-filter` on the workbench, panels or any editor ancestor.** It breaks the positioning of editor menus and suggestions. Big cards fake the frost with a pre-blurred image and `background-attachment: fixed`. Real blur is only for leaf popups.
 - **Keep the `prefers-reduced-transparency` fallback in sync** when adding new surfaces.
 - **Rebuild with `python3 build.py`.** Never hand-edit files in `dist/`.
-- **To release a version,** bump it in `theme/build_theme.py`. It appears three times: `package.json` version, the manifest `Version`, and the `.vsix` filename. Then update the version in `README.md`, `docs/setup.md` and the install commands here.
+- **Version numbers live only in `theme/build_theme.py`.** It appears three times: the `package.json` version, the manifest `Version`, and the `.vsix` filename. Docs use `cumulus-theme-*.vsix` or the release's unversioned `cumulus-theme.vsix`, so they don't need bumping.
 - **Update the docs in the same change.** If behavior, settings, file names or steps change, update `README.md`, the matching file in `docs/` and this file, so they never drift from the code.
+
+## Releasing
+
+`install.sh` downloads from the latest GitHub release, so a change reaches users only after a release.
+
+1. Bump the version in `theme/build_theme.py`.
+2. Commit and push.
+3. Tag and push the tag:
+   ```sh
+   git tag v1.5.3 && git push origin v1.5.3
+   ```
+
+The `Release` workflow (`.github/workflows/release.yml`) checks that the tag matches the version, builds everything, and publishes a release with `cumulus-theme.vsix`, `cumulus-glass.css`, `chat-panel-glass.css` and `patch-chat-panel.sh`.
+
+If you change `install.sh`, test it against a throwaway `HOME`, with `CUMULUS_BASE=file://<folder with the four files>` and `CUMULUS_CODE` pointing at a stub script, so your own setup isn't touched.
 
 ## Before you commit
 
