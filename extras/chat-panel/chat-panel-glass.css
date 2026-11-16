@@ -81,5 +81,25 @@
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
   }
   & :is(.modelPill_gGYT1w, .pill_jamplw):hover { background: rgba(255, 255, 255, 0.13) !important; }
+
+  /* Your own messages: a glass bubble; attachment chips inside follow its corner (bubble radius - padding) */
+  & .userMessage_07S1Yg {
+    background: rgba(12, 48, 112, 0.42) !important;
+    border: 1px solid rgba(255, 255, 255, 0.16) !important;
+    border-radius: 18px !important;
+    corner-shape: squircle;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(255, 255, 255, 0.06);
+    padding: 8px 12px !important;
+  }
+  & .userMessageAttachments_07S1Yg { padding-bottom: 8px; }
+  & .pill_lcdCYQ {
+    --pill-radius: 10px !important;
+    --pill-bg: rgba(210, 232, 255, 0.10) !important;
+    border-color: rgba(255, 255, 255, 0.14) !important;
+    corner-shape: squircle;
+  }
+  & .pill_lcdCYQ:hover { border-color: rgba(255, 255, 255, 0.28) !important; }
+  & .thumbnailAttachment_vRjSkQ { border-radius: 10px !important; corner-shape: squircle; }
+  & .thumbnail_vRjSkQ { border-radius: 9px !important; corner-shape: squircle; }
 }
 /* cumulus-glass:end */
