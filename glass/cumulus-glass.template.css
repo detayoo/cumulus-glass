@@ -25,6 +25,8 @@
   --cg-radius-menu: 24px;
   --cg-radius-control: 16px;
   --cg-radius-row: 12px;
+  --cg-radius-toast: 24px;
+  --cg-toast-pad: 10px;
 
   --cg-edge: rgba(210, 232, 255, 0.16);
   --cg-rim:
@@ -131,7 +133,16 @@
     background: var(--cg-art-lane) center 62% / 48px auto no-repeat;
   }
 
-  /* ── Tabs: the active tab is a glass chip ── */
+  /* ── Tabs: the active tab is a glass chip ──
+     It replaces VS Code's own tab fill and "connected" tab edge, and the strip is inset so the first
+     chip clears the card's large corner instead of pressing into it. */
+  & .part.editor .editor-group-container > .title .tabs-container > .tab > :is(.tab-fill, .tab-connected-edge, .tab-divider),
+  & .part.editor .tabs-and-actions-container > .monaco-scrollable-element > .tab-connected-overflow-edge {
+    display: none !important;
+  }
+  & .part.editor .editor-group-container > .title > .tabs-and-actions-container {
+    padding-left: 10px !important;
+  }
   & .tabs-container > .tab {
     position: relative;
     isolation: isolate;
@@ -145,7 +156,7 @@
   & .tabs-container > .tab::before {
     content: "";
     position: absolute;
-    inset: 4px 3px;
+    inset: 5px 2px;
     z-index: -1;
     border-radius: var(--cg-radius-control);
     corner-shape: squircle;
@@ -252,11 +263,33 @@
     box-shadow: var(--cg-rim-strong) !important;
     corner-shape: squircle;
   }
-  & .quick-input-widget,
-  & .notification-toast,
-  & .notifications-center {
+  & .quick-input-widget {
     border-radius: var(--cg-radius-popup) !important;
     overflow: hidden;
+  }
+
+  /* Notifications: one glass shape (VS Code's own wrappers lose their radius and shadow), with the
+     content inset evenly so the button's corner follows the toast's corner. */
+  & .notification-toast,
+  & .notifications-center,
+  & > .notifications-toasts,
+  & > .notifications-toasts .notification-toast-container,
+  & > .notifications-toasts .notifications-list-container {
+    border-radius: var(--cg-radius-toast) !important;
+    corner-shape: squircle;
+    overflow: hidden;
+  }
+  & > .notifications-toasts,
+  & > .notifications-toasts .notification-toast-container,
+  & > .notifications-toasts .notifications-list-container {
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  & > .notifications-toasts .notification-toast .notification-list-item {
+    padding: var(--cg-toast-pad) calc(var(--cg-toast-pad) + 2px) !important;
+  }
+  & > .notifications-toasts .notification-toast .notification-list-item .monaco-button {
+    border-radius: calc(var(--cg-radius-toast) - var(--cg-toast-pad)) !important;
   }
   & .monaco-editor .suggest-widget,
   & .monaco-editor .suggest-details,
