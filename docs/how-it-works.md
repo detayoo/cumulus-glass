@@ -19,7 +19,7 @@ Real blur is used only on small floating layers that sit outside the editor's la
 
 ## Squircle corners
 
-The corners use the CSS `corner-shape: squircle` property, Apple's continuous curve. VS Code's floating cards get their radius from `--vscode-cornerRadius-large`, which the CSS sets to `--cg-radius-card`. The editor has an extra outer layer with its own radius, so that layer is set to the same shape to keep the sidebar and editor corners identical.
+The corners use the CSS `corner-shape: squircle` property, Apple's continuous curve. VS Code's floating cards get their radius from `--vscode-cornerRadius-large` and, since VS Code 1.147, from per-card variables (`--vscode-primarySideBar-cornerRadius`, `--vscode-secondarySideBar-cornerRadius`, `--vscode-toolsPanel-cornerRadius`, `--vscode-editorArea-cornerRadius`, `--vscode-activityBar-cornerRadius`, `--vscode-panels-cornerRadius`). VS Code caps those at 8px, so the CSS sets every one of them to `--cg-radius-card` with `!important`; miss one and that card falls back to a near-square 8px corner. The editor has an extra outer layer with its own radius, so that layer is set to the same shape to keep the sidebar and editor corners identical.
 
 ## Images
 

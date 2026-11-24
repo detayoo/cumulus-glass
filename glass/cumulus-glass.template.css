@@ -41,6 +41,13 @@
   --cg-chip-hover: rgba(210, 232, 255, 0.07);
 
   --vscode-cornerRadius-large: var(--cg-radius-card) !important;
+  --vscode-panels-cornerRadius: var(--cg-radius-card) !important;
+  --vscode-agentsWindow-panels-cornerRadius: var(--cg-radius-card) !important;
+  --vscode-primarySideBar-cornerRadius: var(--cg-radius-card) !important;
+  --vscode-secondarySideBar-cornerRadius: var(--cg-radius-card) !important;
+  --vscode-toolsPanel-cornerRadius: var(--cg-radius-card) !important;
+  --vscode-editorArea-cornerRadius: var(--cg-radius-card) !important;
+  --vscode-activityBar-cornerRadius: var(--cg-radius-card) !important;
   --modern-ui-floating-card-border-color: var(--cg-edge);
   --vscode-surface-border: var(--cg-edge);
 
